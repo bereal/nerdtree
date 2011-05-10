@@ -140,6 +140,9 @@ call s:initVariable("g:NERDTreeMapToggleZoom", "A")
 call s:initVariable("g:NERDTreeMapUpdir", "u")
 call s:initVariable("g:NERDTreeMapUpdirKeepOpen", "U")
 
+"TODO: Generify in KeyMap.Create
+call s:initVariable("g:NERDTreeMapPasteCmdEntry", "<C-CR>")
+
 "SECTION: Script level variable declaration{{{2
 if s:running_windows
     let s:escape_chars =  " `\|\"#%&,?()\*^<>"
@@ -3636,6 +3639,7 @@ function! s:bindMappings()
 
     exec "nnoremap <silent> <buffer> ". g:NERDTreeMapDeleteBookmark ." :call <SID>deleteBookmark()<cr>"
 
+    exec "cnoremap <buffer> <expr> ". g:NERDTreeMapPasteCmdEntry . " g:NERDTreeFileNode.GetSelected().path.str()" 
     "bind all the user custom maps
     call s:KeyMap.BindAll()
 
